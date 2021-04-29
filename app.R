@@ -132,7 +132,12 @@ server <- function(input, output, session) {
     map <- addCircles(map,
                       lng = globalMap$Longitude,
                       lat = globalMap$Latititude,
-                      color = colorFactors(globalMap$Fuel))
+                      color = colorFactors(globalMap$Fuel),
+                      popup = paste("Country:", globalMap$Country, "<br>",
+                                    "Plant:", globalMap$Plant, "<br>",
+                                    "Capacity:", globalMap$Capacity, "<br>",
+                                    "Fuel Type:", globalMap$Fuel))
+    map <- addResetMapButton(map)
     map
   })
 }
