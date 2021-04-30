@@ -67,7 +67,12 @@ ui <- navbarPage("CS 424 Project X",
                 checkboxGroupInput("fuel", "Select which fuel sources you would
                                    like to view", 
                                    sort(c(unique(globalData$Fuel), "All")),
-                                   selected = "All")
+                                   selected = "All"),
+                checkboxInput("sliderAll", "All"),
+                sliderInput("slider1", "Adjust to view plants based on their maximum
+                            capacity", min = 1, max = 22500, value = 1),
+                sliderInput("slider2", "Adjust to view plants based on their minimum
+                            capacity", min = 1, max = 22500, value = 22500)
                 
         )
       ),
@@ -86,7 +91,9 @@ server <- function(input, output, session) {
     if(input$continent == "North America")
     {
       globalData[globalData$Country %in% northAmerica & 
-                   globalData$Fuel %in% input$fuel,]
+                   globalData$Fuel %in% input$fuel &
+                   globalData$Capacity >= input$slider1 &
+                   globalData$Capacity < input$slider2,]
     }
     else if(input$continent == "South America")
     {
@@ -96,27 +103,37 @@ server <- function(input, output, session) {
     else if (input$continent == "Europe")
     {
       globalData[globalData$Country %in% europe & 
-                   globalData$Fuel %in% input$fuel,]
+                   globalData$Fuel %in% input$fuel &
+                   globalData$Capacity >= input$slider1 &
+                   globalData$Capacity < input$slider2,]
     }
     else if (input$continent == "Africa")
     {
       globalData[globalData$Country %in% africa & 
-                   globalData$Fuel %in% input$fuel,]
+                   globalData$Fuel %in% input$fuel &
+                   globalData$Capacity >= input$slider1 &
+                   globalData$Capacity < input$slider2,]
     }
     else if (input$continent == "Asia")
     {
       globalData[globalData$Country %in% asia & 
-                   globalData$Fuel %in% input$fuel,]
+                   globalData$Fuel %in% input$fuel &
+                   globalData$Capacity >= input$slider1 &
+                   globalData$Capacity < input$slider2,]
     }
     else if (input$continent == "Oceania")
     {
       globalData[globalData$Country %in% oceania & 
-                   globalData$Fuel %in% input$fuel,]
+                   globalData$Fuel %in% input$fuel &
+                   globalData$Capacity >= input$slider1 &
+                   globalData$Capacity < input$slider2,]
     }
     else if (input$continent == "Antarctica")
     {
       globalData[globalData$Country %in% antartica & 
-                   globalData$Fuel %in% input$fuel,]
+                   globalData$Fuel %in% input$fuel &
+                   globalData$Capacity >= input$slider1 &
+                   globalData$Capacity < input$slider2,]
     }
   })
   
