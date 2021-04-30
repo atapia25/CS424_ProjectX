@@ -125,13 +125,14 @@ server <- function(input, output, session) {
     if(input$fuel == "All")
     {
       updateCheckboxGroupInput(session, "fuel",
-                               selected = sort(c(unique(globalData$Fuel))))
+                               selected = sort(c(unique(globalData$Fuel), "All")))
     }
     map <- leaflet(globalMap)
     map <- addTiles(map)
     map <- addCircles(map,
                       lng = globalMap$Longitude,
                       lat = globalMap$Latititude,
+                      radius = (globalMap$Capacity * 40),
                       color = colorFactors(globalMap$Fuel),
                       popup = paste("Country:", globalMap$Country, "<br>",
                                     "Plant:", globalMap$Plant, "<br>",
