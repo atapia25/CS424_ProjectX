@@ -48,10 +48,10 @@ oceania <- c("Australia", "Fiji", "Indonesia", "New Zealand", "Papua New Guinea"
 
 antartica <- c("Antarctica")
 
-colorFactors <- colorFactor(c("#34B4EB", "#6BEB34", "#666666", "#000000",
-                            "#C9C9C9", "#A43BD1", "#523400", "#FFFB29",
-                            "#125412", "#69FFE1", "#1B67E0", "#A7C4C2",
-                            "orange", "red", "brown"), domain = globalData$Fuel)
+colorFactors <- colorFactor(c("#007806", "#000000", "red", "#7200AB",
+                            "brown", "#1FF0FF", "#FA89F1", "#4A270A",
+                            "#8F8F8F", "#3B3B3B", "#FFFB00", "orange",
+                            "#80FF00", "#0066FF", "#A1A1A1"), domain = globalData$Fuel)
 
 
 ui <- navbarPage("CS 424 Project X",
@@ -138,6 +138,7 @@ server <- function(input, output, session) {
                                     "Capacity:", globalMap$Capacity, "<br>",
                                     "Fuel Type:", globalMap$Fuel))
     map <- addResetMapButton(map)
+    map <- addLegend(map, "topright", colorFactors, values = globalMap$Fuel)
     map
   })
 }
