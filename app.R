@@ -82,6 +82,25 @@ ui <- navbarPage("CS 424 Project X",
         )
       )
     )
+  ),
+  tabPanel("About",
+           h1("Information about data"),
+           p("The data consists of electrical production throughout 2019. While
+             previous projects have covered electrical production and usage before,
+             this dataset is on a global scale as it has plants from all over the
+             globe on all seven continents. Different countries will produce one
+             type of energy more than another, or one part of the world may have
+             mastered the production of electricity from renewable energy sources."),
+           br(),
+           p("The dataset can be found at this ",
+             a("link.",
+               href = "https://datasets.wri.org/dataset/globalpowerplantdatabase")),
+           br(),
+           h2("Author of code"),
+           p("The code for this Shiny App was written by Andres Tapia. At the time of this release,
+              I am currently in my second semester of my third year at the University of Illinois
+              at Chicago. This project was something fun that my professor proposed and I wanted to
+             do it during the end of the semester.")
   )
 )
 
